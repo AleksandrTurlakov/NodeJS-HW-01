@@ -19,6 +19,9 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
       break;
     case "remove":
       const removeContact = await contactsOperatons.removeContact(id);
+      if (!removeContact) {
+        throw new Error(`Contact with id=${id} not found`);
+      }
       console.log(removeContact);
       break;
     default:
